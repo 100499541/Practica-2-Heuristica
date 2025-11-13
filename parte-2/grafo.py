@@ -5,7 +5,7 @@ class Grafo:
         self.coordenadas = {}  # { nodo: (latitud, longitud) }
 
     def leer_gr(self, archivo_gr):
-        """Leer ficheros .gr y construir arcos"""
+        """Leer fichero .gr y construir arcos"""
         with open(archivo_gr, 'r') as f:
             for line in f:
                 if line.startswith('a'):
@@ -16,7 +16,7 @@ class Grafo:
                     self.arcos[u].append((v, coste))
 
     def leer_co(self, archivo_co):
-        """Leer ficheros .co y guardar coordenadas"""
+        """Leer fichero .co y guardar coordenadas"""
         with open(archivo_co, 'r') as f:
             for line in f:
                 if line.startswith('v'):

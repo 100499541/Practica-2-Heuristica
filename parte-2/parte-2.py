@@ -23,7 +23,7 @@ def main():
     num_arcos = sum(len(v) for v in grafo.arcos.values())
     print(f"# arcos : {num_arcos}")
 
-    # Resolver con algoritmo eficiente (A*)
+    # Resolver con algoritmo A* eficiente
     alg = Algoritmo(grafo)
     t0 = time.time()
     ruta, coste_total, nodos_expandidos = alg.buscar_A_estrella(inicio, fin)
@@ -37,7 +37,8 @@ def main():
     if ruta:
         with open(fichero_salida, 'w') as f:
             for i in range(len(ruta)-1):
-                f.write(f"{ruta[i]} - ({dict(grafo.arcos[ruta[i]])[ruta[i+1]]}) - ")
+                arco_coste = dict(grafo.arcos[ruta[i]])[ruta[i+1]]
+                f.write(f"{ruta[i]} - ({arco_coste}) - ")
             f.write(f"{ruta[-1]}\n")
 
 if __name__ == "__main__":
