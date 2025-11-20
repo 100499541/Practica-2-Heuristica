@@ -6,7 +6,7 @@ from algoritmo import Algoritmo
 
 def main():
     if len(sys.argv) != 5:
-        print("Uso: ./parte-2.py vertice-1 vertice-2 nombre-del-mapa fichero-salida")
+        print("Uso: python parte-2.py vertice-1 vertice-2 nombre-del-mapa fichero-salida")
         return
 
     inicio = int(sys.argv[1])
