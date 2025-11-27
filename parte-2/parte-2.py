@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import time
+import os
 from grafo import Grafo
 from algoritmo import Algoritmo
 
@@ -13,6 +14,14 @@ def main():
     fin = int(sys.argv[2])
     nombre_mapa = sys.argv[3]
     fichero_salida = sys.argv[4]
+
+    # Busca automaticamenteen la carpeta pruebas-2
+    if nombre_mapa.startswith("USA-road-d."):
+        nombre_mapa = os.path.join("pruebas-2", nombre_mapa)
+        fichero_salida = os.path.join("pruebas-2", fichero_salida)
+
+    grafo_file = nombre_mapa + ".gr"
+    coord_file = nombre_mapa + ".co"
 
     # Leer grafo y coordenadas
     grafo = Grafo()

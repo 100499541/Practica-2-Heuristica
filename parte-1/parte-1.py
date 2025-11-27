@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+import os
 from constraint import Problem, ExactSumConstraint
 import random
 
@@ -22,10 +23,6 @@ def print_grid(grid):
         print("| " + " | ".join(row) + " |")
     print("+---"*n + "+")
 
-# Función para convertir 0/1 a O/X para mostrarlo correctamente
-def convert_grid_to_display(grid):
-    return [['O' if cell == 0 else 'X' for cell in row] for row in grid]
-
 # Main que ejecuta todo el proceso
 def main():
     # Comprueba que se ha ejecutado correctamente el comando y da error si no se ha hecho
@@ -37,11 +34,22 @@ def main():
     input_file = sys.argv[1]
     output_file = sys.argv[2]
 
+    # Busca automaticamente en la carpeta pruebas-1
+    if input_file.startswith("prueba"):
+        input_file = os.path.join("pruebas-1", input_file)
+        output_file = os.path.join("pruebas-1", output_file)
+
+
     # Lee e imprime por pantalla el archivo .in del tablero problema
     n, grid = read_input(input_file)
     print("Instancia a resolver:")
     print_grid(grid)
 
+    # Comprobación de tamaño impar
+    if n % 2 != 0:
+        print("Tablero de tamaño impar: no tiene solución posible")
+        return
+    
     # Crear problema CSP
     problem = Problem()
 
@@ -63,7 +71,7 @@ def main():
                 [(i,j), (i,j+1), (i,j+2)]
             )
 
-    # Segunda restricción no más de dos iguales consecutivos en columnas
+    # Segunda restricción: no más de dos iguales consecutivos en columnas
     for j in range(n):
         for i in range(n-2):
             problem.addConstraint(
@@ -71,14 +79,14 @@ def main():
                 [(i,j), (i+1,j), (i+2,j)]
             )
 
-    # Tercera restricción: mismo número de O y X en cada fila y columna
+    # Tercera y cuarta restricción: mismo número de O y X en cada fila y columna
     half_n = n // 2
     for i in range(n):
         problem.addConstraint(ExactSumConstraint(half_n), [(i,j) for j in range(n)])
     for j in range(n):
         problem.addConstraint(ExactSumConstraint(half_n), [(i,j) for i in range(n)])
 
-    # Resolver el problema e imprimir una solución de forma aleatoria (ya que hay varias soluciones)
+    # Resolver el problema e imprimir el número de soluciones
     solutions = problem.getSolutions()
     print(f"{len(solutions)} soluciones encontradas")
 
