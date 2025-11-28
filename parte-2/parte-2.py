@@ -15,8 +15,8 @@ def main():
     nombre_mapa = sys.argv[3]
     fichero_salida = sys.argv[4]
 
-    # Busca automaticamenteen la carpeta pruebas-2
-    if nombre_mapa.startswith("USA-road-d."):
+    # Si el archivo no contiene ruta, buscar en pruebas-2
+    if not os.path.isabs(nombre_mapa) and not os.path.exists(nombre_mapa + ".gr"):
         nombre_mapa = os.path.join("pruebas-2", nombre_mapa)
         fichero_salida = os.path.join("pruebas-2", fichero_salida)
 
