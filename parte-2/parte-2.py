@@ -23,9 +23,6 @@ def main():
         nombre_mapa = os.path.join("pruebas-2", nombre_mapa)
         fichero_salida = os.path.join("pruebas-2", fichero_salida)
 
-    grafo_file = nombre_mapa + ".gr"
-    coord_file = nombre_mapa + ".co"
-
     # Crear objeto Grafo y leer archivos .gr y .co
     grafo = Grafo()
     grafo.leer_gr(nombre_mapa + ".gr")
