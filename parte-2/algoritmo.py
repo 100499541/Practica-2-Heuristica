@@ -13,6 +13,12 @@ class Algoritmo:
     def heuristica(self, u, v):
         # Calcula distancia aproximada entre dos nodos usando coordenadas geográficas
         # Retorna distancia euclídea en metros
+
+        # Nuevo: si alguno de los nodos no existe en el diccionario de coordenadas,
+        # devolvemos 0 para evitar error y permitir que el algoritmo siga expandiendo
+        if u not in self.grafo.coordenadas or v not in self.grafo.coordenadas:
+            return 0
+
         lat1, lon1 = self.grafo.coordenadas[u]  # Coordenadas del nodo u
         lat2, lon2 = self.grafo.coordenadas[v]  # Coordenadas del nodo v
         dx = (lon2 - lon1) * 111320            # Conversión de grados longitud a metros

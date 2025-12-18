@@ -54,6 +54,7 @@ def main():
             f.write(f"{ruta[-1]}\n")
         else:
             # Si no hay camino posible (es decir, es infactible), escribir "Caso infactible"
+            print("El nodo destino no existe en el grafo o está aislado, caso infactible")
             f.write("Caso infactible\n")
 
 if __name__ == "__main__":
