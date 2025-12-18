@@ -52,7 +52,7 @@ if __name__ == "__main__":
     import sys
     # Comprobar que se han pasado exactamente 3 argumentos
     if len(sys.argv) != 4:
-        print("Uso: python crear_aislado.py nombre_mapa vertice_a_aislar prefijo_salida")
+        print("Uso: python crear-aislado.py nombre-mapa vertice-a-aislar prefijo-salida")
     else:
         # Asignar los argumentos a variables
         nombre_mapa = sys.argv[1]
