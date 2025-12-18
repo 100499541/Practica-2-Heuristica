@@ -1,6 +1,5 @@
 # Módulos de Python para cálculos matemáticos y tiempos de ejecución
 import math
-import time
 from abierta import Abierta  # Importa la lista abierta para nodos por visitar
 from cerrada import Cerrada  # Importa la lista cerrada para nodos visitados
 
